@@ -34,6 +34,20 @@ public class Treap<T extends Comparable<T>> {
         return res;
     }
 
+    public Node<T> searchNodeByKey(T key) {
+        return searchNode(this.root, key);
+    }
+
+    private Node<T> searchNode(Node<T> cur, T key) {
+        if (cur.right != null && cur.key.compareTo(key) < 0) {
+            return searchNode(cur.right, key);
+        }
+        if (cur.left != null && cur.key.compareTo(key) >= 0) {
+            return searchNode(cur.left, key);
+        }
+        return cur;
+    }
+
     private Node<T> deleteNode(Node<T> cur, T key) {
         if (cur == null)
             return null;
